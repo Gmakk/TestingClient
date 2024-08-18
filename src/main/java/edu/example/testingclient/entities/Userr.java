@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-public class Userr implements UserDetails {
+public class Userr{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
@@ -40,50 +40,50 @@ public class Userr implements UserDetails {
         this.isActive = true;
     }
 
-    /**
-     * Добавляет в список все привилегии, связанные с ролью пользователя
-     * @return список всех привилегий пользователя
-     */
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if (role == null)
-            return authorities;
-        for(Authority authority : role.getAuthorities()) {
-            authorities.add(new SimpleGrantedAuthority(authority.getName()));
-        }
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isActive;
-    }
+//    /**
+//     * Добавляет в список все привилегии, связанные с ролью пользователя
+//     * @return список всех привилегий пользователя
+//     */
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        if (role == null)
+//            return authorities;
+//        for(Authority authority : role.getAuthorities()) {
+//            authorities.add(new SimpleGrantedAuthority(authority.getName()));
+//        }
+//        return authorities;
+//    }
+//
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return login;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return isActive;
+//    }
 
 //    @OneToMany(mappedBy = "director")
 //    private List<Project> projectDirectors;

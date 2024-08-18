@@ -1,1 +1,31 @@
-spring.application.name=TestingClient
+server:
+  port: 9092
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          testing-admin-client: #--??? ???????
+            provider: testingsystem
+            client-id: testing-admin-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:9092/login/oauth2/code/testing-admin-client"
+            scope: writeTestCases,deleteTestCases,fullAccess,openid
+
+        provider:
+          testingsystem:
+            issuer-uri: http://auth-server:9093
+  artemis:
+    mode: native
+    #    broker-url: "tcp://192.168.1.210:9876"
+    user: "gmak"
+    password: "G4s7Zd6h2"
+  jpa:
+    defer-datasource-initialization: true #so that data.sql is executed after creating tables via ddl-auto: create
+logging:
+  level:
+    org.springframework.security: trace
+
+
+
