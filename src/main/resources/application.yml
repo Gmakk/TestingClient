@@ -1,5 +1,5 @@
 server:
-  port: 9092
+  port: 9094
 spring:
   security:
     oauth2:
@@ -10,7 +10,7 @@ spring:
             client-id: testing-admin-client
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:9092/login/oauth2/code/testing-admin-client"
+            redirect-uri: "http://127.0.0.1:9094/login/oauth2/code/testing-admin-client"
             scope: writeTestCases,deleteTestCases,fullAccess,openid
 
         provider:
@@ -21,6 +21,28 @@ spring:
     #    broker-url: "tcp://192.168.1.210:9876"
     user: "gmak"
     password: "G4s7Zd6h2"
+  rabbitmq:
+    template:
+      default-receive-queue: general
+#  kafka:
+#    template:
+#      default-topic: testingSystem
+#    bootstrap-servers:
+#      - localhost:9092
+#    consumer:
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      group-id: testing_client
+#      properties:
+#        spring:
+#          json:
+#            trusted:
+#              packages: edu.*
+#          deserializer:
+#            value:
+#              delegate:
+#                class: org.springframework.kafka.support.serializer.JsonDeserializer
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
   jpa:
     defer-datasource-initialization: true #so that data.sql is executed after creating tables via ddl-auto: create
 logging:
